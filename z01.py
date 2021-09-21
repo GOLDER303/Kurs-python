@@ -5,9 +5,9 @@ import math
 # b = float(input("Podaj b:"))
 # c = float(input("Podaj c:"))
 
-a = float(sys.argv[1])
-b = float(sys.argv[2])
-c = float(sys.argv[3])
+a, b, c = sys.argv[1:]
+
+a, b, c = float(a), float(b), float(c)
 
 delta = b**2 - 4*a*c 
 
