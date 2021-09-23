@@ -10,11 +10,8 @@ def compare(price, size):
     pizza_field = 3.14 * (size/2)**2
     return pizza_field / price
 
-
-
-print(f"Restauracja: {pizza_info[0]} pizza: {pizza_info[1]}, size: {pizza_info[2]}, price: {pizza_info[3]}")
-print(f"Restauracja: {pizza_info[4]} pizza: {pizza_info[5]}, size: {pizza_info[6]}, price: {pizza_info[7]}")
-print(f"Restauracja: {pizza_info[8]} pizza: {pizza_info[9]}, size: {pizza_info[10]}, price: {pizza_info[11]}")
+for i in range(0, len(sys.argv) - 1, 4):
+    print(f"Restauracja: {pizza_info[i]} pizza: {pizza_info[i + 1]}, size: {pizza_info[i + 2]}, price: {pizza_info[i + 3]}")
 
 ratio_list = []
 
