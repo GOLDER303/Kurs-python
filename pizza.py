@@ -1,25 +1,28 @@
 import sys
 
-infoOPizzy = []
+pizza_info = []
 
-for i in range(1, len(sys.argv)):
-    infoOPizzy.append(sys.argv[i])
+for j in range(0, int(len(sys.argv) / 4)):
+    for i in range(1, len(sys.argv)):
+        print(j, i)
+        pizza_info[j].append(sys.argv[i])
 
-def porownaj(cena, rozmiar):
-    rozmiar, cena = float(rozmiar), float(cena)
-    polePizzy = 3.14 * (rozmiar/2)**2
-    return polePizzy / cena
+def compare(price, size):
+    size, price = float(size), float(price)
+    pizza_field = 3.14 * (size/2)**2
+    return pizza_field / price
 
 
-print(f"Restauracja: {infoOPizzy[0]} pizza: {infoOPizzy[1]}, rozmiar: {infoOPizzy[2]}, cena: {infoOPizzy[3]}")
-print(f"Restauracja: {infoOPizzy[4]} pizza: {infoOPizzy[5]}, rozmiar: {infoOPizzy[6]}, cena: {infoOPizzy[7]}")
-print(f"Restauracja: {infoOPizzy[8]} pizza: {infoOPizzy[9]}, rozmiar: {infoOPizzy[10]}, cena: {infoOPizzy[11]}")
 
-listaStosunkow = []
+print(f"Restauracja: {pizza_info[0]} pizza: {pizza_info[1]}, size: {pizza_info[2]}, price: {pizza_info[3]}")
+print(f"Restauracja: {pizza_info[4]} pizza: {pizza_info[5]}, size: {pizza_info[6]}, price: {pizza_info[7]}")
+print(f"Restauracja: {pizza_info[8]} pizza: {pizza_info[9]}, size: {pizza_info[10]}, price: {pizza_info[11]}")
+
+ratio_list = []
 
 for i in range(2, len(sys.argv), 4):
-    listaStosunkow.append(porownaj(infoOPizzy[i], infoOPizzy[i+1]))
+    ratio_list.append(compare(pizza_info[i], pizza_info[i+1]))
 
-najlepszyStosunek = listaStosunkow.index(min(listaStosunkow)) + 1
+best_ratio = ratio_list.index(min(ratio_list)) + 1
 
-print(f"Najleszpy stosunek ma pizza nr. {najlepszyStosunek}")
+print(f"Najleszpy stosunek ma pizza nr. {best_ratio}")
