@@ -18,14 +18,6 @@ for row in rows:
     cols = [ele.text.strip() for ele in cols]
     data.append(cols)
 
-days_od_week = {
-    0: 'mon',
-    1: 'tue',
-    2: 'wed',
-    3: 'thu',
-    4: 'fri'
-}
-
 lesson_plan = {
     'mon': {},
     'tue': {},
@@ -35,7 +27,7 @@ lesson_plan = {
 }
 
 i = 2
-for day in days_od_week.values():
+for day in ['mon', 'tue', 'wed', 'thu', 'fri']:
     for row in data[1:]:
         lesson_plan[day][row[1]] = row[i]
     i += 1
