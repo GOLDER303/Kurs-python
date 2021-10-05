@@ -14,9 +14,11 @@ min_temp = weather["forecast"]["forecastday"][1]["day"]["mintemp_c"]
 max_temp = weather["forecast"]["forecastday"][1]["day"]["maxtemp_c"]
 avg_humidity = weather["forecast"]["forecastday"][1]["day"]["avghumidity"]
 max_wind = weather["forecast"]["forecastday"][1]["day"]["maxwind_kph"]
+rain = weather["forecast"]["forecastday"][1]["day"]["totalprecip_mm"]
 
 print(f"Średnioa temperatura {avg_temp} \N{DEGREE SIGN}C")
 print(f"Maksymalna temperatura {max_temp} \N{DEGREE SIGN}C")
 print(f"Minimalna temperatura {min_temp} \N{DEGREE SIGN}C")
 print(f"Średnioa wilgotność {avg_humidity}%")
 print(f"Maksymalna prędkość wiatru {max_wind} km/h")
+print( "Będzie padać" if rain > 0 else "Nie będzie padało")
