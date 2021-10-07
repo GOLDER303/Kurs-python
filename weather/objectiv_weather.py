@@ -1,6 +1,9 @@
 import requests
 import sys
 from datetime import date as dt
+import pprint
+import json
+import os
 
 class Weather:
 
@@ -15,15 +18,39 @@ class Weather:
             print("Podałeś złą datę! Prognoza jest możliwa jedynie na 2 dni do przodu")
             exit()
         self.day_index = int(self.days) - self.current_date.day
-        self.data = self.get_data()
+        self.data = self.get_data_handler()
 
     def get_data_handler(self):
-        pass
+        self.weather = {}
+        with open("weather_data.json", "r+") as file:
+            if os.stat("weather_data.json").st_size != 0:
+                self.weather = json.load(file)
+
+                if(self.weather["forecast"]["forecastday"][-1]["date"] == str(self.date)):
+                    return self.weather
+
+                else:
+                    self.write_to_file()
+                    file.close()
+                    file = open("weather_data.json", "r+")
+                    self.weather = json.load(file)
+            
+            else:
+                self.write_to_file()
+                file.close()
+                file = open("weather_data.json", "r+")
+                self.weather = json.load(file)
+            
+        return self.weather
 
     def get_data(self):
         URL = f"http://api.weatherapi.com/v1/forecast.json?key={self.api_key}&q={self.localization}&days={self.day_index + 1}"
         r = requests.get(URL)
         return r.json()
+
+    def write_to_file(self):
+        with open("weather_data.json", "r+") as file:
+            file.write(json.dumps(self.get_data()))
 
     def get_avg_temp(self):    
         avg_temp = self.data["forecast"]["forecastday"][self.day_index]["day"]["avgtemp_c"]
